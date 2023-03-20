@@ -42,6 +42,7 @@ async function bootstrap(): Promise<void> {
 		.addTag("categories")
 		.addTag("lists")
 		.addTag("status")
+		.addServer(`https://listmanager.up.railway.app/`, "ONLINE")
 		.addServer(`http://localhost:${PORT}`, "Local")
 		.addBearerAuth()
 		.build();

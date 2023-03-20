@@ -1,0 +1,46 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "linux-musl"]
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+  role     String @default("user")
+
+  categories Category[]
+  lists      List[]
+
+  @@map("user")
+}
+
+model Category {
+  id   String @id @default(uuid())
+  name String
+
+  lists  List[]
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @map("user_id")
+
+  @@map("category")
+}
+
+model List {
+  id        String   @id @default(uuid())
+  title     String
+  text      String?
+  createdAt DateTime @map("created_at")
+
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId String?   @map("category_id")
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String    @map("user_id")
+
+  @@map("list")
+}

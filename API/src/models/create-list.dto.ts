@@ -13,5 +13,6 @@ export class ListDto {
 	text: string;
 
 	@ApiProperty({ description: "category ID" })
+	@IsString()
 	categoryId?: string;
 }

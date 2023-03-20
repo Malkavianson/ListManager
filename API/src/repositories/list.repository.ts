@@ -17,13 +17,6 @@ export class ListRepository {
 		categoryId,
 		userId,
 	}: Prisma.ListUncheckedCreateInput): Promise<List> {
-		console.log({
-			title,
-			text,
-			createdAt,
-			categoryId,
-			userId,
-		});
 		try {
 			return this.prisma.list.create({
 				data: {

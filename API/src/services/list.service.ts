@@ -13,7 +13,6 @@ export class ListService {
 	constructor(private readonly listRepository: ListRepository) {}
 
 	async create(userId: string, dto: ListDto): Promise<List> {
-		console.log(userId, dto);
 		const duplicateName = await this.listRepository.findOneByTitle(
 			userId,
 			dto.title,

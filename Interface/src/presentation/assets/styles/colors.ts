@@ -1,18 +1,18 @@
 export const colors = {
-	primaryColor: "#6CEA69",
-	secondaryColor: "#E26B6B",
+	primaryColor: "#55ff55",
+	secondaryColor: "#ff5555",
 
 	contrast1: "#ffffff",
 	contrast0: "#000000",
 
-	primaryColorOpacity: "rgba(108, 234, 105, 0.4)",
+	primaryColorOpacity: "rgba(190, 030, 210, 0.4)",
 
-	shadowColor: "#6CEA69",
+	shadowColor: "#190321",
 
-	baseBg1: "#252836",
-	baseBg2: "#1F1D2B",
-	baseForm: "#2D303E",
-	baseLine: "#393C49",
+	baseBg1: "#151826",
+	baseBg2: "#0F0D1B",
+	baseForm: "#3D404E",
+	baseLine: "#595C69",
 
 	textColor: "#ffffff",
 	textLighter: "#E0E6E9",

@@ -36,14 +36,27 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 		}
 	};
 	const updateList = (
-		{ title, text, user, category }: IList,
+		{ title, text, categoryId }: IList,
 		id: string,
 	): void => {
 		if (logged) {
-			const data = { title, text, user, category };
-			api.put(EListsEndpoints.BASE + "/" + id, data, headers)
+			const data: { title?: string; text?: string; categoryId?: string } =
+				{ title, text, categoryId };
+			if (!title) {
+				delete data.title;
+			}
+			if (!text) {
+				delete data.text;
+			}
+			if (!categoryId) {
+				delete data.categoryId;
+			}
+			console.log(data);
+			console.log(headers);
+			api.patch(EListsEndpoints.BASE + "/" + id, data, headers)
 				.then((): void => {
 					success("Updated(reload your page)");
+					getAllLists();
 				})
 				.catch(err => {
 					error(err);

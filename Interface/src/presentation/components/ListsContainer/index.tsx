@@ -5,7 +5,7 @@ import {
 	SHomeComponentsTitle,
 	SHomeComponentsContainer,
 	SCardsConteiner,
-	SProductOverlay,
+	SListsOverlay,
 	error,
 	Input,
 	SHomeComponentsSelectors,
@@ -85,7 +85,7 @@ export const ListsContainer = (): JSX.Element => {
 				</SColumn>
 			</SHomeComponentsContainer>
 			{modal && (
-				<SProductOverlay>
+				<SListsOverlay>
 					<div className="modal">
 						<div
 							className="close"
@@ -199,7 +199,7 @@ export const ListsContainer = (): JSX.Element => {
 							)}
 						</div>
 					</div>
-				</SProductOverlay>
+				</SListsOverlay>
 			)}
 		</>
 	);

@@ -1,9 +1,9 @@
 import { useLists } from "main";
-import { Input, SProductOverlay } from "presentation";
+import { Input, SListsOverlay } from "presentation";
 import { useState } from "react";
 import { ICategory } from "types";
 
-export const CreateProduct = (): JSX.Element => {
+export const CreateList = (): JSX.Element => {
 	const { createList, createOn, setCreateOn, getAllLists, categories } =
 		useLists();
 	const [title, setTitle] = useState<string>("");
@@ -11,7 +11,7 @@ export const CreateProduct = (): JSX.Element => {
 	const [categoryId, setCategoryId] = useState<string>("");
 
 	return (
-		<SProductOverlay>
+		<SListsOverlay>
 			<div className="modal">
 				<div className="UpdateItens">
 					<div>Create List</div>
@@ -74,6 +74,6 @@ export const CreateProduct = (): JSX.Element => {
 					</div>
 				</div>
 			</div>
-		</SProductOverlay>
+		</SListsOverlay>
 	);
 };

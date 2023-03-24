@@ -39,7 +39,7 @@ export const SCardsConteiner = styled.div`
 	}
 `;
 
-export const SProductOverlay = styled.div`
+export const SListsOverlay = styled.div`
 	position: absolute;
 	top: 0;
 	left: 0;

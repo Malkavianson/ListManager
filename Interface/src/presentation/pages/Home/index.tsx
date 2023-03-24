@@ -1,6 +1,6 @@
 import { useLists } from "main";
 import {
-	CreateProduct,
+	CreateList,
 	SHome,
 	ListsContainer,
 	theme,
@@ -14,7 +14,7 @@ export const Home = (): JSX.Element => {
 		<SHome theme={theme}>
 			<UpperTab path={ERoutePath.HOME} />
 			<ListsContainer />
-			{createOn && <CreateProduct />}
+			{createOn && <CreateList />}
 		</SHome>
 	);
 };

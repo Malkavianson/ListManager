@@ -75,6 +75,47 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 			});
 	};
 
+	const createCategory = ({ name }: ICategory): void => {
+		if (logged && name) {
+			const data = { name };
+			api.post("category/", data, headers)
+				.then((): void => {
+					success("Registrated");
+					getAllLists();
+				})
+				.catch(err => {
+					error(err);
+				});
+		} else {
+			error("Invalid data");
+		}
+	};
+	const updateCategory = ({ name }: ICategory, id: string): void => {
+		if (logged) {
+			const data = { name };
+			api.patch("category/" + id, data, headers)
+				.then((): void => {
+					success("Updated(reload your page)");
+					getAllLists();
+				})
+				.catch(err => {
+					error(err);
+				});
+		} else {
+			error("Invalid data");
+		}
+	};
+	const deleteCategory = (id: string): void => {
+		api.delete("category/" + "/" + id, headers)
+			.then((): void => {
+				success("Deleted");
+				getAllLists();
+			})
+			.catch(err => {
+				error(err);
+			});
+	};
+
 	const getAllCategories = (): void => {
 		api.get("/category", headers)
 			.then(res => {
@@ -84,7 +125,6 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 				error(err);
 			});
 	};
-
 	const getAllLists = (): void => {
 		api.get(EListsEndpoints.BASE, headers)
 			.then(res => setLists(res.data))
@@ -92,6 +132,7 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 				error(err);
 			});
 	};
+
 	const getListById = (id: string): void => {
 		api.get(EListsEndpoints.BASE + "/" + id, headers)
 			.then(res => {
@@ -102,7 +143,6 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 				error(err);
 			});
 	};
-
 	const getCategoryById = (id: string): void => {
 		api.get("/category/" + id, headers)
 			.then(res => setLists(res.data.lists))
@@ -128,6 +168,9 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 				createList,
 				updateList,
 				deleteList,
+				createCategory,
+				updateCategory,
+				deleteCategory,
 				getListById,
 				getAllLists,
 				categories,

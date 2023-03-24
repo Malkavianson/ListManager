@@ -43,6 +43,9 @@ export interface ListsProviderData {
 	createList: (data: IList) => void;
 	updateList: (data: IList, id: string) => void;
 	deleteList: (id: string) => void;
+	createCategory: (data: ICategory) => void;
+	updateCategory: (data: ICategory, id: string) => void;
+	deleteCategory: (id: string) => void;
 	getListById: (id: string) => void;
 	getAllLists: () => void;
 	getCategoryById: (id: string) => void;

@@ -58,8 +58,9 @@ export const SignIn = (): JSX.Element => {
 					</SContainerVerification>
 				</div>
 				<SSubmitButtom
-					onClick={(): void => {
+					onClick={(e): void => {
 						action();
+						e.preventDefault();
 					}}
 				>
 					{!mode ? `Register` : `SignIn`}

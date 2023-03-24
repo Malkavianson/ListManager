@@ -35,18 +35,16 @@ export const UserProvider = ({ children }: AllProvidersProps): JSX.Element => {
 			};
 			switch (mode) {
 				case false:
-					data.role = "user";
 					const register = await api
 						.post(`/user`, data)
 						.then((res: any) => res);
 					switch (register.status) {
 						case 201:
-							delete data.role;
 							const loginAfterRegister = await api
 								.post(`/auth`, data)
 								.then((res: any) => res);
 							switch (loginAfterRegister.status) {
-								case 201:
+								case 200:
 									login(loginAfterRegister.data);
 									break;
 
@@ -69,7 +67,7 @@ export const UserProvider = ({ children }: AllProvidersProps): JSX.Element => {
 							.post(`/auth`, data)
 							.then((res: any) => res);
 						switch (sigin.status) {
-							case 201:
+							case 200:
 								login(sigin.data);
 								break;
 

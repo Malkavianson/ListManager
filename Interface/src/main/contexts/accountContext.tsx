@@ -36,35 +36,31 @@ export const AuthProvider = ({ children }: AllProvidersProps): JSX.Element => {
 		setLogged(false);
 	};
 
-	const checkTokenExpiration = (): void => {
-		const token = localStorage.getItem("token");
-
-		const headers = {
+	const checkTokenExpiration = (currentToken: string): void => {
+		api.get(`/auth`, {
 			headers: {
-				Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${currentToken}`,
 			},
-		};
-		if (logged && currentUser) {
-			api.get(`/users/${currentUser.user.id}`, headers)
-				.then(res => {
-					const data = res.data;
-					setLogged(true);
-					if (token) {
-						setCurrentUser({
-							token,
-							user: data,
-						});
-						localStorage.setItem("user", JSON.stringify(data));
-					}
-				})
-				.catch(() => {
-					logout();
+		})
+			.then(res => {
+				const data = res.data;
+				setLogged(true);
+				setCurrentUser({
+					token: currentToken,
+					user: data,
 				});
-		}
+				localStorage.setItem("user", JSON.stringify(data));
+			})
+			.catch(() => {
+				logout();
+			});
 	};
 	useEffect(() => {
 		const currentToken = localStorage.getItem("token");
-		if (currentToken) checkTokenExpiration();
+		if (currentToken) {
+			setHeader(currentToken);
+			checkTokenExpiration(currentToken);
+		}
 	}, []);
 
 	return (

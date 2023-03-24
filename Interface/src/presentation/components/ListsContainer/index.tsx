@@ -49,7 +49,9 @@ export const ListsContainer = (): JSX.Element => {
 								<SHomeComponentsTitle
 									key={i}
 									onClick={(): void => {
-										getCategoryById(e.id);
+										if (e.id) {
+											getCategoryById(e.id);
+										}
 									}}
 								>
 									{e.name}

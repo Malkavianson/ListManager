@@ -25,11 +25,11 @@ export interface IUser {
 }
 
 export interface ICategory {
-	id: string;
+	id?: string;
 	name: string;
-	user: string;
-	listCount: number;
-	lists: IList[];
+	user?: string;
+	listCount?: number;
+	lists?: IList[];
 }
 
 export interface IList {

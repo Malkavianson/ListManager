@@ -23,6 +23,8 @@ export const UpperTab = ({ path }: MenuProps): JSX.Element => {
 		setModal,
 		setCreateOn,
 		createOn,
+		setCreateCatOn,
+		createCatOn,
 	} = useLists();
 	const [allListsSwitch, setAllListsSwitch] = useState<IList[]>([]);
 	const [active, setActive] = useState(false);
@@ -109,6 +111,14 @@ export const UpperTab = ({ path }: MenuProps): JSX.Element => {
 							}}
 						>
 							Create new List
+						</li>
+						<li
+							onClick={(): void => {
+								setCreateCatOn(!createCatOn);
+								setActive(!active);
+							}}
+						>
+							Create new category
 						</li>
 						<li
 							onClick={(): void => {

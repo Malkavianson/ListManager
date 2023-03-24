@@ -54,4 +54,6 @@ export interface ListsProviderData {
 	setModal: React.Dispatch<React.SetStateAction<boolean>>;
 	createOn: boolean;
 	setCreateOn: React.Dispatch<React.SetStateAction<boolean>>;
+	createCatOn: boolean;
+	setCreateCatOn: React.Dispatch<React.SetStateAction<boolean>>;
 }

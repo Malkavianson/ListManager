@@ -15,6 +15,7 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 	const { logged, headers } = useAuth();
 	const [modal, setModal] = useState<boolean>(false);
 	const [createOn, setCreateOn] = useState(false);
+	const [createCatOn, setCreateCatOn] = useState(false);
 	const allLists: IList[] = [];
 
 	const [lists, setLists] = useState<IList[]>(allLists);
@@ -179,6 +180,8 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 				setModal,
 				createOn,
 				setCreateOn,
+				createCatOn,
+				setCreateCatOn,
 			}}
 		>
 			{children}

@@ -21,12 +21,13 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 	const [categories, setCategories] = useState<ICategory[]>([]);
 	const [currentList, setCurrentList] = useState<IList>(allLists[0]);
 
-	const createList = ({ title, text, category, user }: IList): void => {
-		if (logged && title && text && user) {
-			const data = { title, text, category, user };
+	const createList = ({ title, text, categoryId }: IList): void => {
+		if (logged && title && text) {
+			const data = { title, text, categoryId };
 			api.post(EListsEndpoints.CREATE, data, headers)
 				.then((): void => {
 					success("Registrated");
+					getAllLists();
 				})
 				.catch(err => {
 					error(err);
@@ -51,8 +52,6 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 			if (!categoryId) {
 				delete data.categoryId;
 			}
-			console.log(data);
-			console.log(headers);
 			api.patch(EListsEndpoints.BASE + "/" + id, data, headers)
 				.then((): void => {
 					success("Updated(reload your page)");
@@ -69,6 +68,7 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 		api.delete(EListsEndpoints.BASE + "/" + id, headers)
 			.then((): void => {
 				success("Deleted");
+				getAllLists();
 			})
 			.catch(err => {
 				error(err);

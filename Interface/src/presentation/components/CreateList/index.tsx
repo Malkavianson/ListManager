@@ -35,6 +35,10 @@ export const CreateList = (): JSX.Element => {
 							setCategoryId(e.target.value);
 						}}
 					>
+						<option
+							value=""
+							title=""
+						></option>
 						{categories.map((c: ICategory, i: number) => {
 							return (
 								<option

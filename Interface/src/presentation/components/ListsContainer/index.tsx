@@ -65,7 +65,6 @@ export const ListsContainer = (): JSX.Element => {
 									onClick={(): void => {
 										if (list.id) {
 											getListById(list.id);
-											setModal(!modal);
 										}
 									}}
 								>

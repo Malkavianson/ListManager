@@ -81,7 +81,10 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 	};
 	const getListById = (id: string): void => {
 		api.get(EListsEndpoints.BASE + "/" + id, headers)
-			.then(res => setCurrentList(res.data))
+			.then(res => {
+				setCurrentList(res.data);
+				setModal(!modal);
+			})
 			.catch(err => {
 				error(err);
 			});

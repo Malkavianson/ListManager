@@ -63,8 +63,10 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 	};
 
 	const getAllCategories = (): void => {
-		api.get(EListsEndpoints.BASE, headers)
-			.then(res => setCategories(res.data))
+		api.get("/category", headers)
+			.then(res => {
+				setCategories(res.data);
+			})
 			.catch(err => {
 				error(err);
 			});
@@ -86,7 +88,7 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 	};
 
 	const getCategoryById = (id: string): void => {
-		api.get("/category" + id, headers)
+		api.get("/category/" + id, headers)
 			.then(res => setLists(res.data.lists))
 			.catch(err => {
 				error(err);
@@ -95,7 +97,8 @@ export const ListsProvider = ({ children }: AllProvidersProps): JSX.Element => {
 
 	useEffect((): void => {
 		getAllLists();
-	}, []);
+		getAllCategories();
+	}, [logged]);
 
 	useEffect((): void => {
 		getAllCategories();
